@@ -861,7 +861,7 @@ public class GraphContainer extends GraphNode implements IContainer {
 		// Containers cannot be added to other containers (yet)
 	}
 
-	public List getNodes() {
+	public List<GraphNode> getNodes() {
 		return this.childNodes;
 	}
 
