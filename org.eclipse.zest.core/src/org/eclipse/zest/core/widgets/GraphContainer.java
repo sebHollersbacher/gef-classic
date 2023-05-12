@@ -536,6 +536,13 @@ public class GraphContainer extends GraphNode implements IContainer {
 
 	}
 
+	/**
+	 * @since 1.8
+	 */
+	public LayoutAlgorithm getLayoutAlgorithm() {
+		return this.layoutAlgorithm;
+	}
+
 	public void applyLayout() {
 		if ((this.getNodes().size() == 0)) {
 			return;
@@ -848,6 +855,11 @@ public class GraphContainer extends GraphNode implements IContainer {
 	void addConnectionFigure(PolylineConnection connection) {
 		getModelFigure().add(connection);
 		// zestLayer.addConnection(connection);
+	}
+
+	void clearNodes() {
+		zestLayer.clearNodes();
+		this.childNodes.clear();
 	}
 
 	void addNode(GraphNode node) {
