@@ -35,10 +35,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
@@ -250,11 +246,7 @@ public class Graph extends FigureCanvas implements IContainer {
 	 * 
 	 * @return List of GraphModelNode objects
 	 */
-<<<<<<< Upstream, based on origin/master
 	public List<? extends GraphNode> getNodes() {
-=======
-	public List<GraphNode> getNodes() {
->>>>>>> 54f6a33 Changed nodes to be removed from container when creating subgraphs
 		return nodes;
 	}
 
@@ -629,7 +621,7 @@ public class Graph extends FigureCanvas implements IContainer {
 			if (figureUnderMouse == null) {
 				return;
 			}
-			GraphItem itemUnderMouse = (GraphItem) figure2ItemMap.get(figureUnderMouse);
+			GraphItem itemUnderMouse = figure2ItemMap.get(figureUnderMouse);
 			if (itemUnderMouse instanceof GraphContainer container) {
 				// GraphContainer under this mouse
 				Display display = Display.getCurrent();
@@ -678,7 +670,8 @@ public class Graph extends FigureCanvas implements IContainer {
 				}
 				g.setLayoutAlgorithm(container.getLayoutAlgorithm(), false);
 
-				Image img = new Image(Display.getDefault(), Graph.class.getResourceAsStream("back_arrow.gif"));
+				Image img = new Image(Display.getDefault(),
+						Graph.class.getResourceAsStream("../../../../../icons/back_arrow.gif"));
 				Button backButton = new Button(img);
 				backButton.setBounds(new Rectangle(new Point(0, 0), backButton.getPreferredSize()));
 				backButton.addActionListener(event -> {
