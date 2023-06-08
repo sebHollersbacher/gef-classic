@@ -35,13 +35,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
@@ -118,6 +113,7 @@ public class Graph extends FigureCanvas implements IContainer {
 
 	private ScalableFreeformLayeredPane rootlayer;
 	private ZestRootLayer zestRootLayer;
+	private Button revealAllButton = new Button("Reveal All");
 
 	private boolean hasPendingLayoutRequest;
 	private boolean enableHideNodes;
@@ -130,7 +126,7 @@ public class Graph extends FigureCanvas implements IContainer {
 	 * @param style
 	 */
 	public Graph(Composite parent, int style) {
-		this(parent, style, false);
+		this(parent, style, true);
 	}
 
 	/**
@@ -195,7 +191,6 @@ public class Graph extends FigureCanvas implements IContainer {
 		this.enableHideNodes = enableHideNodes;
 
 		if (enableHideNodes) {
-			Button revealAllButton = new Button("Reveal All");
 			revealAllButton.setBounds(new Rectangle(new Point(0, 0), revealAllButton.getPreferredSize()));
 			revealAllButton.addActionListener(event -> {
 				for (GraphNode node : nodes) {
@@ -723,6 +718,7 @@ public class Graph extends FigureCanvas implements IContainer {
 
 					g.release();
 				});
+				g.revealAllButton.setLocation(new Point(backButton.getPreferredSize().width, 0));
 
 				g.rootlayer.add(backButton);
 
